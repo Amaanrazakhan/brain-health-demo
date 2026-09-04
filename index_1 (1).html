@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tend — A Field Guide to Brain Health</title>
+<meta name="description" content="A practical, evidence-graded guide to the five things that shape brain health: sleep, nutrition, movement, calm, and mental performance.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --canvas:#EEF0E7;
+    --paper:#FBFAF4;
+    --ink:#16211B;
+    --ink-soft:#45524A;
+    --ink-faint:#6E7A70;
+    --deep:#16241E;
+    --deep-paper:#E9ECE1;
+    --deep-soft:#9FAE9C;
+    --teal:#3E8F86;
+    --teal-soft:rgba(62,143,134,0.12);
+    --teal-line:rgba(62,143,134,0.35);
+    --gold:#AD7C2C;
+    --gold-soft:rgba(173,124,44,0.14);
+    --line:#CDD2C1;
+    --line-deep:rgba(233,236,225,0.18);
+    --radius:18px;
+    --content-w:760px;
+    --wide-w:1120px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--canvas);
+    color:var(--ink);
+    font-family:'Public Sans', sans-serif;
+    font-size:1.05rem;
+    line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+  }
+  img,svg{display:block;max-width:100%;}
+  a{color:inherit;}
+  ::selection{background:var(--teal-soft);}
+
+  :focus-visible{
+    outline:2.5px solid var(--teal);
+    outline-offset:3px;
+    border-radius:4px;
+  }
+
+  h1,h2,h3{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    line-height:1.08;
+    margin:0;
+    letter-spacing:-0.01em;
+  }
+
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.72rem;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--ink-faint);
+  }
+  .eyebrow--deep{ color:var(--deep-soft); }
+  .eyebrow--teal{ color:var(--teal); }
+
+  .wrap{
+    max-width:var(--content-w);
+    margin:0 auto;
+    padding:0 28px;
+  }
+  .wrap--wide{ max-width:var(--wide-w); }
+
+  /* ---------- Nav ---------- */
+  header.site{
+    position:sticky;
+    top:0;
+    z-index:40;
+    background:rgba(238,240,231,0.86);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{
+    max-width:var(--wide-w);
+    margin:0 auto;
+    padding:16px 28px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+  }
+  .brand{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:1.15rem;
+    display:flex;
+    align-items:baseline;
+    gap:8px;
+  }
+  .brand em{
+    font-style:italic;
+    font-weight:500;
+    color:var(--teal);
+    font-size:0.85rem;
+  }
+  .nav-links{
+    display:flex;
+    gap:22px;
+    list-style:none;
+    margin:0;
+    padding:0;
+    font-size:0.88rem;
+  }
+  .nav-links a{
+    text-decoration:none;
+    color:var(--ink-soft);
+    padding:6px 2px;
+    border-bottom:1.5px solid transparent;
+    transition:border-color .2s ease, color .2s ease;
+  }
+  .nav-links a:hover{ color:var(--ink); border-color:var(--gold); }
+  .nav-links a.checkin-link{ color:var(--teal); font-weight:600; }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    background:var(--deep);
+    color:var(--deep-paper);
+    position:relative;
+    overflow:hidden;
+    padding:76px 0 0;
+  }
+  .hero-inner{
+    max-width:var(--wide-w);
+    margin:0 auto;
+    padding:0 28px 40px;
+    display:grid;
+    grid-template-columns:1.1fr 0.9fr;
+    gap:40px;
+    align-items:center;
+  }
+  .hero h1{
+    font-size:clamp(2.5rem, 3.4vw + 1.6rem, 4.4rem);
+    color:var(--deep-paper);
+    margin:18px 0 22px;
+  }
+  .hero h1 i{
+    font-style:italic;
+    font-weight:500;
+    color:var(--gold);
+  }
+  .hero p.lede{
+    font-size:1.14rem;
+    color:var(--deep-soft);
+    max-width:46ch;
+    margin:0 0 30px;
+  }
+  .hero-actions{
+    display:flex;
+    gap:18px;
+    align-items:center;
+    flex-wrap:wrap;
+  }
+  .btn{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.82rem;
+    letter-spacing:0.04em;
+    text-decoration:none;
+    padding:13px 22px;
+    border-radius:100px;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    transition:transform .2s ease, background .2s ease;
+  }
+  .btn--solid{
+    background:var(--gold);
+    color:var(--deep);
+    font-weight:600;
+  }
+  .btn--solid:hover{ transform:translateY(-1px); background:#c28f3c; }
+  .btn--ghost{
+    color:var(--deep-paper);
+    border:1px solid var(--line-deep);
+  }
+  .btn--ghost:hover{ border-color:var(--deep-soft); }
+
+  .hero-figure{ position:relative; }
+  .hero-figure svg{ width:100%; height:auto; }
+  .branch-path{
+    fill:none;
+    stroke-linecap:round;
+  }
+  .node{ }
+  @media (prefers-reduced-motion:no-preference){
+    .branch-path{
+      stroke-dasharray:600;
+      stroke-dashoffset:600;
+      animation:draw 2.2s ease forwards;
+    }
+    .node{
+      opacity:0;
+      animation:fadeNode .6s ease forwards;
+    }
+  }
+  @keyframes draw{ to{ stroke-dashoffset:0; } }
+  @keyframes fadeNode{ to{ opacity:1; } }
+
+  /* ---------- Premise ---------- */
+  .premise{
+    padding:72px 0 40px;
+  }
+  .premise p{
+    font-size:1.2rem;
+    line-height:1.7;
+    color:var(--ink-soft);
+    max-width:64ch;
+  }
+  .premise strong{ color:var(--ink); font-weight:600; }
+
+  /* Evidence legend */
+  .legend{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px 16px;
+    margin-top:26px;
+    padding:18px 20px;
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:14px;
+  }
+  .legend-item{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    font-size:0.84rem;
+    color:var(--ink-soft);
+  }
+  .dot{ width:9px; height:9px; border-radius:50%; flex:none; }
+  .dot--strong{ background:var(--teal); }
+  .dot--moderate{ background:#7FAE64; }
+  .dot--mixed{ background:var(--gold); }
+
+  .tag{
+    display:inline-block;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.68rem;
+    letter-spacing:0.03em;
+    padding:2px 8px 3px;
+    border-radius:100px;
+    margin-left:8px;
+    white-space:nowrap;
+    position:relative;
+    top:-1px;
+  }
+  .tag--strong{ background:var(--teal-soft); color:var(--teal); }
+  .tag--moderate{ background:rgba(127,174,100,0.16); color:#4d7a37; }
+  .tag--mixed{ background:var(--gold-soft); color:var(--gold); }
+
+  /* ---------- Pillar sections ---------- */
+  .pillar{
+    padding:64px 0;
+    border-top:1px solid var(--line);
+  }
+  .pillar-head{
+    display:flex;
+    align-items:flex-start;
+    gap:18px;
+    margin-bottom:20px;
+  }
+  .pillar-icon{ flex:none; width:46px; height:46px; margin-top:4px; }
+  .pillar h2{ font-size:clamp(1.7rem, 1.4vw + 1.2rem, 2.4rem); margin-bottom:6px; }
+  .pillar .why{
+    color:var(--ink-soft);
+    max-width:66ch;
+    margin:0 0 28px;
+    font-size:1.02rem;
+  }
+  .practice-list{
+    list-style:none;
+    margin:0;
+    padding:0;
+    display:grid;
+    gap:14px;
+  }
+  .practice-list li{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:16px 18px;
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:14px;
+  }
+  .practice-list p{ margin:0; color:var(--ink); }
+  .practice-list .tag{ flex:none; margin-left:12px; margin-top:3px; }
+
+  .pillar[data-accent="teal"] .pillar-icon path{ stroke:var(--teal); }
+  .pillar[data-accent="gold"] .pillar-icon path{ stroke:var(--gold); }
+  .pillar[data-accent="teal"] .pillar-icon circle{ fill:var(--teal); }
+  .pillar[data-accent="gold"] .pillar-icon circle{ fill:var(--gold); }
+
+  /* ---------- Check-in ---------- */
+  .checkin{
+    background:var(--deep);
+    color:var(--deep-paper);
+    padding:76px 0;
+  }
+  .checkin .eyebrow{ margin-bottom:10px; }
+  .checkin h2{ color:var(--deep-paper); font-size:clamp(1.8rem, 1.6vw + 1.2rem, 2.6rem); margin-bottom:14px; }
+  .checkin > .wrap > p{ color:var(--deep-soft); max-width:60ch; margin:0 0 36px; }
+
+  .checkin-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:24px 32px;
+    background:rgba(233,236,225,0.05);
+    border:1px solid var(--line-deep);
+    border-radius:20px;
+    padding:32px;
+  }
+  .field{ display:flex; flex-direction:column; gap:8px; }
+  .field label{ font-size:0.88rem; color:var(--deep-soft); }
+  .field .value{ color:var(--gold); font-weight:600; font-family:'IBM Plex Mono', monospace; font-size:0.8rem; }
+  input[type="range"]{
+    accent-color:var(--gold);
+    width:100%;
+  }
+  .toggle-row{
+    display:flex;
+    gap:10px;
+  }
+  .toggle-btn{
+    flex:1;
+    padding:10px 12px;
+    border-radius:10px;
+    border:1px solid var(--line-deep);
+    background:transparent;
+    color:var(--deep-paper);
+    font-family:'Public Sans', sans-serif;
+    font-size:0.88rem;
+    cursor:pointer;
+    transition:all .15s ease;
+  }
+  .toggle-btn[aria-pressed="true"]{
+    background:var(--gold);
+    color:var(--deep);
+    border-color:var(--gold);
+    font-weight:600;
+  }
+  .checkin-cta{
+    margin-top:28px;
+    display:flex;
+    align-items:center;
+    gap:16px;
+    flex-wrap:wrap;
+  }
+  .checkin-cta button.btn{
+    border:none;
+    cursor:pointer;
+  }
+  .checkin-note{ font-size:0.8rem; color:var(--deep-soft); }
+
+  .reflection{
+    margin-top:30px;
+    display:grid;
+    gap:12px;
+  }
+  .reflection[hidden]{ display:none; }
+  .reflection-item{
+    background:rgba(233,236,225,0.06);
+    border:1px solid var(--line-deep);
+    border-radius:12px;
+    padding:14px 18px;
+    display:flex;
+    gap:12px;
+    align-items:flex-start;
+    font-size:0.94rem;
+    color:var(--deep-paper);
+  }
+  .reflection-item .rlabel{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.7rem;
+    color:var(--gold);
+    flex:none;
+    width:88px;
+    padding-top:2px;
+    text-transform:uppercase;
+    letter-spacing:0.05em;
+  }
+  .reflection-disclaimer{
+    font-size:0.78rem;
+    color:var(--deep-soft);
+    margin-top:16px;
+    max-width:60ch;
+  }
+
+  /* ---------- Myths ---------- */
+  .myths{ padding:72px 0; border-top:1px solid var(--line); }
+  .myth-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+    margin-top:28px;
+  }
+  .myth{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:20px;
+  }
+  .myth .claim{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-weight:500;
+    font-size:1.05rem;
+    color:var(--ink);
+    margin:0 0 8px;
+  }
+  .myth .verdict{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.68rem;
+    letter-spacing:0.05em;
+    text-transform:uppercase;
+    color:var(--teal);
+    margin:0 0 8px;
+  }
+  .myth p.explain{ margin:0; color:var(--ink-soft); font-size:0.94rem; }
+
+  /* ---------- Care note ---------- */
+  .care{
+    padding:56px 0;
+    border-top:1px solid var(--line);
+  }
+  .care-box{
+    background:var(--gold-soft);
+    border:1px solid rgba(173,124,44,0.3);
+    border-radius:16px;
+    padding:26px 28px;
+    max-width:72ch;
+  }
+  .care-box p{ margin:0; color:var(--ink); }
+  .care-box strong{ font-weight:600; }
+
+  /* ---------- Footer ---------- */
+  footer{
+    padding:44px 0 60px;
+    border-top:1px solid var(--line);
+  }
+  footer .wrap{ display:flex; justify-content:space-between; gap:24px; flex-wrap:wrap; }
+  footer p{ margin:0; color:var(--ink-faint); font-size:0.86rem; max-width:52ch; }
+  footer .brand{ font-size:1rem; }
+
+  /* ---------- Reveal on scroll ---------- */
+  .reveal{ opacity:0; transform:translateY(18px); transition:opacity .7s ease, transform .7s ease; }
+  .reveal.in{ opacity:1; transform:translateY(0); }
+  @media (prefers-reduced-motion:reduce){
+    .reveal{ opacity:1; transform:none; transition:none; }
+  }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width:820px){
+    .hero-inner{ grid-template-columns:1fr; }
+    .hero-figure{ order:-1; max-width:280px; margin:0 auto; }
+    .checkin-grid{ grid-template-columns:1fr; }
+    .myth-grid{ grid-template-columns:1fr; }
+  }
+  @media (max-width:600px){
+    .nav-links{ gap:14px; font-size:0.8rem; overflow-x:auto; }
+    .nav-links li{ flex:none; }
+    .wrap{ padding:0 20px; }
+    .practice-list li{ flex-direction:column; }
+    .practice-list .tag{ margin-left:0; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <nav class="nav">
+    <div class="brand">Tend <em>/ brain health</em></div>
+    <ul class="nav-links">
+      <li><a href="#sleep">Sleep</a></li>
+      <li><a href="#nutrition">Nutrition</a></li>
+      <li><a href="#movement">Movement</a></li>
+      <li><a href="#calm">Calm</a></li>
+      <li><a href="#mind">Mind</a></li>
+      <li><a href="#checkin" class="checkin-link">Check-in</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <p class="eyebrow eyebrow--deep">A FIELD GUIDE TO BRAIN HEALTH</p>
+      <h1>Your brain isn't fixed.<br>It's <i>tended</i>.</h1>
+      <p class="lede">Five daily practices shape how well you sleep, think, and feel, backed by real evidence, not another wellness trend. This guide lays out what actually matters, and what to leave alone.</p>
+      <div class="hero-actions">
+        <a href="#sleep" class="btn btn--solid">Start reading ↓</a>
+        <a href="#checkin" class="btn btn--ghost">Take the check-in</a>
+      </div>
+    </div>
+    <div class="hero-figure" aria-hidden="true">
+      <svg viewBox="0 0 520 560" fill="none">
+        <path class="branch-path" d="M260,540 C250,470 235,430 190,380" stroke="#9FAE9C" stroke-width="2"/>
+        <path class="branch-path" d="M260,540 C255,460 260,410 300,350" stroke="#9FAE9C" stroke-width="2"/>
+        <path class="branch-path" d="M260,540 C275,480 300,450 350,410" stroke="#3E8F86" stroke-width="2.5"/>
+        <path class="branch-path" d="M260,540 C240,490 200,460 150,440" stroke="#AD7C2C" stroke-width="2.5"/>
+        <path class="branch-path" d="M260,540 C265,500 290,480 330,470" stroke="#9FAE9C" stroke-width="1.5"/>
+        <path class="branch-path" d="M190,380 C170,350 150,330 110,320" stroke="#9FAE9C" stroke-width="1.5"/>
+        <path class="branch-path" d="M300,350 C310,310 305,270 270,230" stroke="#3E8F86" stroke-width="2"/>
+        <path class="branch-path" d="M300,350 C330,320 360,300 400,290" stroke="#9FAE9C" stroke-width="1.5"/>
+        <path class="branch-path" d="M350,410 C390,390 420,360 440,320" stroke="#AD7C2C" stroke-width="1.5"/>
+        <path class="branch-path" d="M150,440 C120,420 90,410 60,400" stroke="#9FAE9C" stroke-width="1.5"/>
+        <path class="branch-path" d="M270,230 C260,190 270,150 250,110" stroke="#3E8F86" stroke-width="1.5"/>
+        <path class="branch-path" d="M270,230 C300,200 320,180 360,170" stroke="#AD7C2C" stroke-width="1.5"/>
+
+        <circle class="node" cx="190" cy="380" r="4" fill="#9FAE9C"/>
+        <circle class="node" cx="300" cy="350" r="4" fill="#3E8F86"/>
+        <circle class="node" cx="350" cy="410" r="5" fill="#3E8F86"/>
+        <circle class="node" cx="150" cy="440" r="5" fill="#AD7C2C"/>
+        <circle class="node" cx="110" cy="320" r="3.5" fill="#9FAE9C"/>
+        <circle class="node" cx="270" cy="230" r="4.5" fill="#3E8F86"/>
+        <circle class="node" cx="400" cy="290" r="3.5" fill="#9FAE9C"/>
+        <circle class="node" cx="440" cy="320" r="4" fill="#AD7C2C"/>
+        <circle class="node" cx="60" cy="400" r="3.5" fill="#9FAE9C"/>
+        <circle class="node" cx="250" cy="110" r="4" fill="#3E8F86"/>
+        <circle class="node" cx="360" cy="170" r="3.5" fill="#AD7C2C"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<main>
+  <section class="premise">
+    <div class="wrap">
+      <p class="reveal"><strong>Brain health isn't one thing you fix.</strong> It's five ordinary things you keep doing: sleeping enough, eating in a pattern that feeds your neurons, moving your body, managing stress, and using your mind in ways that actually build it. None of them are exotic. None of them need a supplement. This page walks through each one, with the practices that have real evidence behind them and the confidence level for each claim, so you can tell a proven habit from a promising guess.</p>
+      <div class="legend reveal">
+        <span class="legend-item"><span class="dot dot--strong"></span>Strong evidence, consistent findings</span>
+        <span class="legend-item"><span class="dot dot--moderate"></span>Moderate evidence, generally supported</span>
+        <span class="legend-item"><span class="dot dot--mixed"></span>Mixed or early evidence</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLEEP -->
+  <section class="pillar reveal" id="sleep" data-accent="teal">
+    <div class="wrap">
+      <div class="pillar-head">
+        <svg class="pillar-icon" viewBox="0 0 46 46" fill="none"><path d="M8,40 C10,30 14,22 24,14" stroke-width="2"/><circle cx="24" cy="14" r="4"/></svg>
+        <div>
+          <p class="eyebrow eyebrow--teal">01 · REST</p>
+          <h2>Sleep</h2>
+        </div>
+      </div>
+      <p class="why">Deep sleep is when your brain clears the metabolic waste it built up during the day, files memories into longer-term storage, and resets the prefrontal circuits you need for focus and mood the next day. Cut it short often enough and all three of those jobs go undone.</p>
+      <ul class="practice-list">
+        <li><p>Keep the same wake-up time every day, weekends included. Regularity does more for your circadian clock than any single "ideal" bedtime.</p><span class="tag tag--strong">Strong</span></li>
+        <li><p>Most adults function best on 7 or more hours. Use how you feel through the day as your real gauge, not a number you read somewhere.</p><span class="tag tag--strong">Strong</span></li>
+        <li><p>Get outside for bright light within an hour of waking. It's one of the strongest signals your circadian clock responds to.</p><span class="tag tag--moderate">Moderate</span></li>
+        <li><p>Wind down stimulating screens and bright light in the hour before bed. The content and timing matter more than the blue light itself.</p><span class="tag tag--mixed">Mixed</span></li>
+        <li><p>Keep the bedroom cool, dark, and quiet. Small environmental changes reliably shorten how long it takes you to fall asleep.</p><span class="tag tag--moderate">Moderate</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- NUTRITION -->
+  <section class="pillar reveal" id="nutrition" data-accent="gold">
+    <div class="wrap">
+      <div class="pillar-head">
+        <svg class="pillar-icon" viewBox="0 0 46 46" fill="none"><path d="M8,38 C14,28 20,18 34,8" stroke-width="2"/><circle cx="34" cy="8" r="4"/></svg>
+        <div>
+          <p class="eyebrow eyebrow--teal" style="color:var(--gold)">02 · FUEL</p>
+          <h2>Nutrition</h2>
+        </div>
+      </div>
+      <p class="why">The brain runs on a steady supply of glucose and depends on fats to build and repair neuron membranes. No single food changes that. What consistently shows up in the research is the overall pattern of what you eat, not any one ingredient.</p>
+      <ul class="practice-list">
+        <li><p>Build meals around vegetables, fruit, whole grains, legumes, and fish or other omega-3 sources. This Mediterranean-style pattern has the strongest evidence of any diet studied for brain health.</p><span class="tag tag--strong">Strong</span></li>
+        <li><p>Stay hydrated through the day. Even mild dehydration measurably drags down mood and concentration.</p><span class="tag tag--moderate">Moderate</span></li>
+        <li><p>Limit ultra-processed food and added sugar, less because any single food is dangerous, more because it crowds out the foods above.</p><span class="tag tag--moderate">Moderate</span></li>
+        <li><p>Fermented foods support gut health, and the gut-brain link is a real, active area of research, though it's still early days for specific claims.</p><span class="tag tag--mixed">Mixed</span></li>
+        <li><p>Morning caffeine can sharpen focus. Afternoon or evening caffeine quietly undermines the sleep you're trying to protect.</p><span class="tag tag--strong">Strong</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- MOVEMENT -->
+  <section class="pillar reveal" id="movement" data-accent="teal">
+    <div class="wrap">
+      <div class="pillar-head">
+        <svg class="pillar-icon" viewBox="0 0 46 46" fill="none"><path d="M6,30 C16,30 18,20 28,20 C38,20 36,10 40,8" stroke-width="2"/><circle cx="40" cy="8" r="4"/></svg>
+        <div>
+          <p class="eyebrow eyebrow--teal">03 · CIRCULATION</p>
+          <h2>Movement</h2>
+        </div>
+      </div>
+      <p class="why">Physical activity increases blood flow to the brain and raises levels of a protein called BDNF, which supports new connections between neurons. Of everything on this page, movement has some of the most consistent evidence behind it, at every age.</p>
+      <ul class="practice-list">
+        <li><p>Aim for roughly 150 minutes of moderate activity a week, a brisk walk counts, per WHO guidance, plus movement on most days if you can manage it.</p><span class="tag tag--strong">Strong</span></li>
+        <li><p>Add strength training twice a week. It isn't only about muscle, it's linked to better cognitive performance too.</p><span class="tag tag--strong">Strong</span></li>
+        <li><p>Short movement breaks during long stretches of sitting beat one long workout for how alert you feel that day.</p><span class="tag tag--moderate">Moderate</span></li>
+        <li><p>New, complex movement, dance, an unfamiliar sport, challenges the brain more than repeating the same routine.</p><span class="tag tag--moderate">Moderate</span></li>
+        <li><p>Moving outdoors adds a mood benefit that the same movement indoors doesn't fully match.</p><span class="tag tag--moderate">Moderate</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- CALM -->
+  <section class="pillar reveal" id="calm" data-accent="gold">
+    <div class="wrap">
+      <div class="pillar-head">
+        <svg class="pillar-icon" viewBox="0 0 46 46" fill="none"><path d="M4,24 C10,14 16,34 22,24 C28,14 34,34 40,24" stroke-width="2"/><circle cx="40" cy="24" r="3.5"/></svg>
+        <div>
+          <p class="eyebrow eyebrow--teal" style="color:var(--gold)">04 · RECOVERY</p>
+          <h2>Calm</h2>
+        </div>
+      </div>
+      <p class="why">A short burst of stress sharpens focus. Stress that never lets up raises cortisol, which over time can shrink the hippocampus, the part of the brain most involved in memory, and weaken the prefrontal circuits behind focus and self-control.</p>
+      <ul class="practice-list">
+        <li><p>Real, in-person connection is one of the strongest buffers against stress and later cognitive decline, and the thing people tend to drop first when busy.</p><span class="tag tag--strong">Strong</span></li>
+        <li><p>A regular breathing or meditation practice measurably lowers your baseline stress response within a matter of weeks.</p><span class="tag tag--strong">Strong</span></li>
+        <li><p>Time outdoors lowers rumination and stress markers, even a short walk does something measurable.</p><span class="tag tag--moderate">Moderate</span></li>
+        <li><p>Naming what you're feeling, out loud or on paper, reliably takes some of the intensity out of it.</p><span class="tag tag--moderate">Moderate</span></li>
+        <li><p>You can't eliminate stress, but building in real recovery afterward matters more than trying to avoid it altogether.</p><span class="tag tag--moderate">Moderate</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- MIND -->
+  <section class="pillar reveal" id="mind" data-accent="teal">
+    <div class="wrap">
+      <div class="pillar-head">
+        <svg class="pillar-icon" viewBox="0 0 46 46" fill="none"><path d="M23,6 L23,16 M23,30 L23,40 M6,23 L16,23 M30,23 L40,23 M11,11 L18,18 M28,28 L35,35 M35,11 L28,18 M18,28 L11,35" stroke-width="1.8"/><circle cx="23" cy="23" r="4"/></svg>
+        <div>
+          <p class="eyebrow eyebrow--teal">05 · SHARPNESS</p>
+          <h2>Mind</h2>
+        </div>
+      </div>
+      <p class="why">Attention and memory are genuinely trainable, but the training that works looks less like a brain-training app and more like real engagement, spaced practice, and protecting the sleep and movement that make clear thinking possible in the first place.</p>
+      <ul class="practice-list">
+        <li><p>Single-tasking beats multitasking for both speed and accuracy. Constant switching between tasks carries a real, measurable cost.</p><span class="tag tag--strong">Strong</span></li>
+        <li><p>Spaced repetition, learning something once and revisiting it days later, beats cramming for what you actually retain.</p><span class="tag tag--strong">Strong</span></li>
+        <li><p>Commercial brain-training games make you better at that specific game. Evidence that it transfers to broader intelligence is weak.</p><span class="tag tag--mixed">Mixed</span></li>
+        <li><p>A deliberate break, a short walk, staring out a window, helps consolidate what you just learned more than pushing straight through.</p><span class="tag tag--moderate">Moderate</span></li>
+        <li><p>Learning a genuinely new skill, an instrument, a language, keeps building new neural connections throughout life, more than passive input like scrolling.</p><span class="tag tag--moderate">Moderate</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- CHECK-IN -->
+  <section class="checkin" id="checkin">
+    <div class="wrap">
+      <p class="eyebrow eyebrow--deep">A QUICK REFLECTION</p>
+      <h2 class="reveal">How's this week actually going?</h2>
+      <p class="reveal">Answer honestly. This isn't a test or a score, just a plain-language mirror on the five practices above, so you can see where to put your attention this week.</p>
+
+      <div class="checkin-grid reveal">
+        <div class="field">
+          <label for="sleepRange">Average sleep per night: <span class="value" id="sleepVal">7 hrs</span></label>
+          <input type="range" id="sleepRange" min="4" max="10" step="0.5" value="7">
+        </div>
+        <div class="field">
+          <label for="moveRange">Days active this week: <span class="value" id="moveVal">3 days</span></label>
+          <input type="range" id="moveRange" min="0" max="7" step="1" value="3">
+        </div>
+        <div class="field">
+          <label for="stressRange">Stress level lately: <span class="value" id="stressVal">Moderate</span></label>
+          <input type="range" id="stressRange" min="1" max="5" step="1" value="3">
+        </div>
+        <div class="field">
+          <label for="connectRange">In-person connection this week: <span class="value" id="connectVal">Some</span></label>
+          <input type="range" id="connectRange" min="1" max="5" step="1" value="3">
+        </div>
+        <div class="field" style="grid-column:1 / -1;">
+          <label>Screens right before bed, most nights?</label>
+          <div class="toggle-row">
+            <button type="button" class="toggle-btn" id="screenYes" aria-pressed="false">Yes, often</button>
+            <button type="button" class="toggle-btn" id="screenNo" aria-pressed="true">Not really</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="checkin-cta">
+        <button class="btn btn--solid" id="reflectBtn">See my reflection</button>
+        <span class="checkin-note">Takes ten seconds. Nothing is saved or sent anywhere.</span>
+      </div>
+
+      <div class="reflection" id="reflectionOut" hidden></div>
+    </div>
+  </section>
+
+  <!-- MYTHS -->
+  <section class="myths reveal">
+    <div class="wrap wrap--wide">
+      <p class="eyebrow eyebrow--teal">WORTH RETIRING</p>
+      <h2 style="margin-top:8px;">Four things you can stop believing</h2>
+      <div class="myth-grid">
+        <div class="myth">
+          <p class="claim">"You only use 10% of your brain."</p>
+          <p class="verdict">False</p>
+          <p class="explain">Brain imaging shows activity spread across nearly the whole brain over a day. Different regions take turns, but very little sits permanently idle.</p>
+        </div>
+        <div class="myth">
+          <p class="claim">"Brain-training apps make you generally smarter."</p>
+          <p class="verdict">Mixed at best</p>
+          <p class="explain">You reliably get better at the specific game. Evidence that it transfers to broader memory or intelligence is weak and inconsistent.</p>
+        </div>
+        <div class="myth">
+          <p class="claim">"One bad night of sleep undoes your progress."</p>
+          <p class="verdict">False</p>
+          <p class="explain">It's the pattern across weeks that shapes brain health, not any single night. One rough night is normal, not a setback to panic over.</p>
+        </div>
+        <div class="myth">
+          <p class="claim">"A brain supplement will sharpen your mind."</p>
+          <p class="verdict">Consistently disappointing</p>
+          <p class="explain">For people who are already well-nourished, most studied supplements show no measurable cognitive benefit beyond correcting an actual deficiency.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="care reveal">
+    <div class="wrap">
+      <div class="care-box">
+        <p><strong>One honest note.</strong> Everything on this page is general education, not a diagnosis or a treatment plan. If sleep, mood, memory, or focus feel persistently off, not just an off week, that's worth bringing to a doctor or a licensed therapist. They can see things a website never can.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <div class="brand">Tend</div>
+      <p style="margin-top:8px;">General guidance on this page draws on consensus recommendations from bodies like the WHO, CDC, and NIH. Individual needs vary, this is a starting point, not a prescription.</p>
+    </div>
+    <p>Built as a plain, evidence-graded guide. No tracking, no accounts, nothing saved.</p>
+  </div>
+</footer>
+
+<script>
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window){
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting){
+          entry.target.classList.add('in');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    revealEls.forEach(el => io.observe(el));
+  } else {
+    revealEls.forEach(el => el.classList.add('in'));
+  }
+
+  // Check-in sliders
+  const sleepRange = document.getElementById('sleepRange');
+  const moveRange = document.getElementById('moveRange');
+  const stressRange = document.getElementById('stressRange');
+  const connectRange = document.getElementById('connectRange');
+  const sleepVal = document.getElementById('sleepVal');
+  const moveVal = document.getElementById('moveVal');
+  const stressVal = document.getElementById('stressVal');
+  const connectVal = document.getElementById('connectVal');
+  const screenYes = document.getElementById('screenYes');
+  const screenNo = document.getElementById('screenNo');
+  const reflectBtn = document.getElementById('reflectBtn');
+  const reflectionOut = document.getElementById('reflectionOut');
+
+  const wordScale5 = ['Very low','Low','Moderate','High','Very high'];
+  const connectScale5 = ['Isolated','A little','Some','Good amount','Plenty'];
+
+  sleepRange.addEventListener('input', () => { sleepVal.textContent = `${sleepRange.value} hrs`; });
+  moveRange.addEventListener('input', () => { moveVal.textContent = `${moveRange.value} days`; });
+  stressRange.addEventListener('input', () => { stressVal.textContent = wordScale5[stressRange.value - 1]; });
+  connectRange.addEventListener('input', () => { connectVal.textContent = connectScale5[connectRange.value - 1]; });
+
+  let screensBeforeBed = false;
+  function setScreenToggle(isYes){
+    screensBeforeBed = isYes;
+    screenYes.setAttribute('aria-pressed', String(isYes));
+    screenNo.setAttribute('aria-pressed', String(!isYes));
+  }
+  screenYes.addEventListener('click', () => setScreenToggle(true));
+  screenNo.addEventListener('click', () => setScreenToggle(false));
+
+  function line(label, text){
+    const div = document.createElement('div');
+    div.className = 'reflection-item';
+    div.innerHTML = `<span class="rlabel">${label}</span><span>${text}</span>`;
+    return div;
+  }
+
+  reflectBtn.addEventListener('click', () => {
+    const sleep = parseFloat(sleepRange.value);
+    const move = parseInt(moveRange.value, 10);
+    const stress = parseInt(stressRange.value, 10);
+    const connect = parseInt(connectRange.value, 10);
+
+    reflectionOut.innerHTML = '';
+
+    // Sleep
+    if (sleep < 6){
+      reflectionOut.appendChild(line('Sleep', "Running lean this week. Even 30 extra minutes, protected on purpose, tends to show up fast in focus and mood."));
+    } else if (sleep < 7){
+      reflectionOut.appendChild(line('Sleep', "Close to a solid range. A consistent wake time might close the rest of the gap more than an earlier bedtime would."));
+    } else {
+      reflectionOut.appendChild(line('Sleep', "Sitting in a healthy range. Worth protecting, this is quietly doing a lot of work for you."));
+    }
+
+    // Movement
+    if (move <= 1){
+      reflectionOut.appendChild(line('Movement', "A quiet week for activity. You don't need a full workout plan, a couple of brisk 20-minute walks would already move the needle."));
+    } else if (move <= 3){
+      reflectionOut.appendChild(line('Movement', "A reasonable base. Adding one more active day, or a short strength session, is a small lever with a real payoff."));
+    } else {
+      reflectionOut.appendChild(line('Movement', "Genuinely active week. This is one of the better-evidenced habits on the whole page, well spent effort."));
+    }
+
+    // Stress
+    if (stress >= 4){
+      reflectionOut.appendChild(line('Stress', "Running high. This is the week to protect recovery on purpose, even five minutes of slow breathing or a walk outside counts."));
+    } else if (stress === 3){
+      reflectionOut.appendChild(line('Stress', "Middling, which is normal. Worth noticing what's driving it before it becomes the default."));
+    } else {
+      reflectionOut.appendChild(line('Stress', "Calmer than most weeks. Good baseline to build other habits on top of."));
+    }
+
+    // Connection
+    if (connect <= 2){
+      reflectionOut.appendChild(line('Connection', "Light on in-person time. This is the most underrated lever on this whole page, even one real conversation this week would help."));
+    } else if (connect === 3){
+      reflectionOut.appendChild(line('Connection', "Some connection this week. A little more, on purpose, tends to compound."));
+    } else {
+      reflectionOut.appendChild(line('Connection', "Well connected this week. One of the strongest buffers against stress, and it shows."));
+    }
+
+    // Screens
+    if (screensBeforeBed){
+      reflectionOut.appendChild(line('Wind-down', "Screens are creeping into your wind-down. Try swapping the last 20 minutes for something dimmer and less stimulating, and see if sleep feels different."));
+    } else {
+      reflectionOut.appendChild(line('Wind-down', "Bedtime is reasonably protected from screens already. Keep that boundary, it's doing more than it gets credit for."));
+    }
+
+    const note = document.createElement('p');
+    note.className = 'reflection-disclaimer';
+    note.textContent = "This is a personal reflection, not a medical or diagnostic assessment. If any of these feel persistently, not just occasionally, off, a doctor or therapist can help in a way this page can't.";
+    reflectionOut.appendChild(note);
+
+    reflectionOut.hidden = false;
+    reflectionOut.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  });
+</script>
+
+</body>
+</html>
